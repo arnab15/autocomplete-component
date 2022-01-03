@@ -10,7 +10,7 @@ function App() {
 		console.log(e.target.value);
 		setSearchTerms(e.target.value);
 		if (searchTerms !== "") {
-			const newStateList = states.filter((state) => state.name.toLowerCase().includes(searchTerms));
+			const newStateList = states.filter((state) => state.name.toLowerCase().includes(searchTerms.toLowerCase()));
 			setfilteredResult(newStateList);
 		} else {
 			setfilteredResult(states);
