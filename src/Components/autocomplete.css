@@ -1,0 +1,12 @@
+.input-box {
+	padding: 10px;
+}
+.result-box {
+	padding: 15px;
+	background: gainsboro;
+	color: black;
+}
+.result-parent-box {
+	margin: auto;
+	width: 40%;
+}

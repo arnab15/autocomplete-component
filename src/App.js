@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from "./logo.svg";
+import "./App.css";
+import AutoComplete from "./Components/AutoComplete";
+import { states } from "./states";
+import { useState } from "react";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [searchTerms, setSearchTerms] = useState("");
+	const [filteredResult, setfilteredResult] = useState([]);
+	const handelSearchTextChange = (e) => {
+		console.log(e.target.value);
+		setSearchTerms(e.target.value);
+		if (searchTerms !== "") {
+			const newStateList = states.filter((state) => state.name.toLowerCase().includes(searchTerms));
+			setfilteredResult(newStateList);
+		} else {
+			setfilteredResult(states);
+		}
+	};
+	return (
+		<div className="App">
+			<AutoComplete
+				searchTerms={searchTerms}
+				handelSearchTextChange={handelSearchTextChange}
+				data={searchTerms.length < 1 ? states : filteredResult}
+			/>
+		</div>
+	);
 }
 
 export default App;
